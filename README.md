@@ -1,40 +1,88 @@
-# DecisionLens AI
+# DecisionLens AI 🧠💡
 
-**An AI-powered life decision simulator and second-opinion reasoning system**
+> Your AI-Powered Life Decision Simulator for Complex Choices
 
-Built for USAII Global AI Hackathon 2026 - Undergraduate Track Challenge 3 (Second Brain for Real Life)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![React](https://img.shields.io/badge/react-18%2B-blue)
+![Status](https://img.shields.io/badge/status-Active%20Development-green)
 
-## Vision
+## 🎯 Overview
 
-Most decision tools generate pros and cons. DecisionLens AI helps users:
+DecisionLens AI is a full-stack application that helps you make better life decisions by:
 
-- Think clearly about complex decisions
-- Identify hidden tradeoffs and blind spots
-- Compare multiple scenarios with uncertainty modeling
-- Understand different perspectives on their situation
-- Make informed decisions (humans always decide, never the AI)
+1. **Understanding Your Context** - Diagnostic chat to understand your values, constraints, and vision
+2. **Perspective Panel** - 5 AI advisor archetypes offer diverse viewpoints
+3. **Scenario Simulation** - Explore best, expected, and worst-case outcomes
+4. **Hidden Tradeoffs** - Discover non-obvious consequences
+5. **Uncertainty Mapping** - Understand what you know, don't know, and are assuming
+6. **Clarity Report** - Export comprehensive PDF analysis
 
-## Tech Stack
+## 🏗️ Architecture
 
-**Frontend**: React + TypeScript + Tailwind CSS + ShadCN UI + Recharts
-**Backend**: FastAPI + Python
-**AI**: Gemini API + LangGraph + LangChain
-**Database**: Local MySQL + SQLAlchemy ORM
-**PDF**: ReportLab
-**State**: React Context
+```
+┌─────────────────────────────────────────┐
+│         Frontend (React + TS)           │
+│  ├─ Landing Page                        │
+│  ├─ Diagnostic Chat Interface           │
+│  ├─ Advisor Perspective Panel           │
+│  ├─ Scenario Comparison Views           │
+│  └─ Clarity Report Generator            │
+└────────────────────┬────────────────────┘
+                     │ REST API
+┌────────────────────▼─────────────���──────┐
+│      Backend API (FastAPI)              │
+│  ├─ Auth Service                        │
+│  ├─ Decision Service                    │
+│  ├─ Chat Service                        │
+│  ├─ Scenario Service                    │
+│  ├─ Report Service                      │
+│  └─ PDF Generation Service              │
+└────────────────────┬────────────────────┘
+                     │
+┌────────────────────▼────────────────────┐
+│      AI Orchestration Layer             │
+│  ├─ LangGraph Workflow Manager          │
+│  ├─ Multi-Agent Coordinator             │
+│  ├─ Prompt Templates                    │
+│  └─ Context Manager                     │
+└────────────────────┬────────────────────┘
+                     │
+┌────────────────────▼────────────────────┐
+│    Google Gemini AI (API)               │
+│  ├─ Diagnostic Questions                │
+│  ├─ Advisor Perspectives                │
+│  ├─ Scenario Generation                 │
+│  └─ Tradeoff Discovery                  │
+└─────────────────────────────────────────┘
+```
 
-## Features
+## 📦 Tech Stack
 
-✅ Structured decision intake & diagnostic conversation
-✅ Hidden tradeoff discovery
-✅ Multi-scenario simulation with financial/career/lifestyle analysis
-✅ Perspective panel (5 advisor archetypes)
-✅ Uncertainty mapping (known vs unknown factors)
-✅ Interactive visualizations (Recharts)
-✅ PDF clarity report generation
-✅ Responsible AI guardrails & disclaimers
+### Backend
+- **Framework**: FastAPI 0.104+
+- **Language**: Python 3.10+
+- **AI/LLM**: Google Gemini API
+- **Workflow**: LangGraph
+- **Database**: PostgreSQL (optional), SQLite for local
+- **PDF**: ReportLab
+- **Async**: AsyncIO, Uvicorn
 
-## Quick Start
+### Frontend
+- **Framework**: React 18+
+- **Language**: TypeScript 5+
+- **Styling**: Tailwind CSS
+- **State**: Context API
+- **Charts**: Recharts
+- **Icons**: Lucide React
+- **Build**: Vite
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.10+
+- Node.js 18+
+- Google Gemini API key (free at https://makersuite.google.com/app/apikey)
 
 ### Backend Setup
 
@@ -44,8 +92,9 @@ python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
-# Set up local MySQL database
-mysql -u root -p < schema.sql
+# Configure environment
+cp .env.example .env
+# Edit .env and add your GEMINI_API_KEY
 
 # Start server
 uvicorn app.main:app --reload
@@ -56,209 +105,193 @@ uvicorn app.main:app --reload
 ```bash
 cd frontend
 npm install
-npm run dev
+
+# Configure environment
+cp .env.example .env.local
+# Edit .env.local if needed
+
+# Start dev server
+npm start
 ```
 
-Visit `http://localhost:3000`
+### Access Application
+- **Frontend**: http://localhost:3000
+- **API Docs**: http://localhost:8000/docs
 
-## Project Structure
+## 📋 Features
+
+### Phase 1: Landing & Auth
+- ✅ Landing page with feature overview
+- ✅ User authentication system
+- ✅ User profiles
+
+### Phase 2-3: Diagnostic Chat
+- ✅ 5 diagnostic questions about decision context
+- ✅ AI-powered follow-up questions
+- ✅ Context accumulation
+
+### Phase 4-5: Advisor Perspectives
+- ✅ 5 advisor archetypes (Pragmatic Parent, Risk-Taking Entrepreneur, etc.)
+- ✅ Unique perspectives from each advisor
+- ✅ Blind spot identification
+
+### Phase 6-7: Scenario Simulation
+- ✅ Best case scenario generation
+- ✅ Expected case scenario
+- ✅ Worst case scenario
+- ✅ Scenario comparison visualizations
+- ✅ Financial impact analysis
+
+### Phase 8-9: Hidden Tradeoffs & Uncertainty
+- ✅ Tradeoff discovery and acknowledgment
+- ✅ Uncertainty mapping (known/unknown/assumptions)
+- ✅ Key factors identification
+
+### Phase 10: Clarity Report
+- ✅ Comprehensive PDF report generation
+- ✅ Key insights summary
+- ✅ Ranked priorities
+- ✅ Decision framework
+- ✅ Gut check questions
+
+## 🔧 Configuration
+
+### Environment Variables
+
+**Backend (.env)**
+```env
+GEMINI_API_KEY=your_api_key
+DATABASE_URL=sqlite:///./test.db
+DEBUG=True
+```
+
+**Frontend (.env.local)**
+```env
+REACT_APP_API_URL=http://localhost:8000
+```
+
+## 📚 API Endpoints
+
+### Authentication
+- `POST /auth/signin` - Sign in user
+- `POST /auth/signup` - Create new user
+- `GET /auth/users` - List all users
+
+### Decisions
+- `POST /decisions/` - Create new decision
+- `GET /decisions/{id}` - Get decision details
+- `GET /decisions/user/{user_id}` - List user decisions
+- `PATCH /decisions/{id}/context` - Update decision context
+
+### Chat
+- `GET /chat/questions` - Get diagnostic questions
+- `POST /chat/start-session` - Start chat session
+- `POST /chat/send` - Send message
+- `GET /chat/session/{session_id}` - Get chat history
+
+### Scenarios
+- `GET /scenarios/decision/{decision_id}` - List scenarios
+- `POST /scenarios/decision/{decision_id}/generate` - Generate scenarios
+
+### Reports
+- `GET /reports/decision/{decision_id}` - Get report
+- `POST /reports/decision/{decision_id}/export-pdf` - Export as PDF
+
+## 🧪 Testing
+
+```bash
+# Backend tests
+cd backend
+pytest
+pytest --cov=app  # With coverage
+
+# Frontend tests
+cd frontend
+npm test
+npm test -- --coverage
+```
+
+See [TESTING.md](TESTING.md) for detailed testing guide.
+
+## 📖 Deployment
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for comprehensive deployment instructions including:
+- Docker setup
+- Cloud deployment (AWS, GCP, Azure)
+- Database configuration
+- Performance optimization
+- Security checklist
+
+## 🎓 Project Context
+
+**Built for**: USAII Global AI Hackathon 2026
+**Track**: Undergraduate
+**Challenge**: Challenge 3 - AI-Powered Application
+
+## 📂 Project Structure
 
 ```
 DecisionLens-AI/
 ├── backend/
 │   ├── app/
-│   │   ├── __init__.py
-│   │   ├── main.py
-│   │   ├── config.py
-│   │   ├── models/
-│   │   │   ├── __init__.py
-│   │   │   ├── user.py
-│   │   │   ├── decision.py
-│   │   │   ├── scenario.py
-│   │   │   ├── tradeoff.py
-│   │   │   └── session.py
-│   │   ├── schemas/
-│   │   │   ├── __init__.py
-│   │   │   ├── user.py
-│   │   │   ├── decision.py
-│   │   │   ├── scenario.py
-│   │   │   └── advisor.py
-│   │   ├── routes/
-│   │   │   ├── __init__.py
-│   │   │   ├── auth.py
-│   │   │   ├── decisions.py
-│   │   │   ├── chat.py
-│   │   │   ├── scenarios.py
-│   │   │   ├── reports.py
-│   │   │   └── health.py
-│   │   ├── services/
-│   │   │   ├── __init__.py
-│   │   │   ├── decision_service.py
-│   │   │   ├── scenario_service.py
-│   │   │   ├── report_service.py
-│   │   │   └── pdf_service.py
-│   │   ���── agents/
-│   │   │   ├── __init__.py
-│   │   │   ├── facilitator.py
-│   │   │   ├── tradeoff_discovery.py
-│   │   │   ├── scenario_simulator.py
-│   │   │   ├── financial_analyst.py
-│   │   │   ├── perspective_panel.py
-│   │   │   ├── uncertainty_agent.py
-│   │   │   └── report_agent.py
-│   │   ├── prompts/
-│   │   │   ├── __init__.py
-│   │   │   ├── facilitator_prompts.py
-│   │   │   ├── tradeoff_prompts.py
-│   │   │   ├── scenario_prompts.py
-│   │   │   ├── financial_prompts.py
-│   │   │   ├── perspective_prompts.py
-│   │   │   ├── uncertainty_prompts.py
-│   │   │   └── report_prompts.py
-│   │   └── utils/
-│   │       ├── __init__.py
-│   │       ├── db.py
-│   │       └── validators.py
-│   ├── requirements.txt
-│   ├── schema.sql
-│   ├── .env.example
-│   └── README.md
+│   │   ├── agents/              # AI agents for each phase
+│   │   ├── services/            # Business logic services
+│   │   ├── models/              # Data models
+│   │   ├── prompts/             # LLM prompt templates
+│   │   ├── routers/             # API endpoints
+│   │   ├── orchestration/       # LangGraph workflows
+│   │   ├── schemas/             # Request/response schemas
+│   │   └── main.py              # FastAPI app
+│   ├── tests/                   # Test suite
+│   ├── requirements.txt          # Python dependencies
+│   └── .env.example              # Environment template
 ├── frontend/
 │   ├── src/
-│   │   ├── components/
+│   │   ├── components/          # React components
 │   │   │   ├── common/
-│   │   │   │   ├── Header.tsx
-│   │   │   │   ├── Footer.tsx
-│   │   │   │   ├── Disclaimer.tsx
-│   │   │   │   └── LoadingSpinner.tsx
-│   │   │   ├── decision/
-│   │   │   │   ├── DecisionInput.tsx
-│   │   │   │   ├── TradeoffCard.tsx
-│   │   │   │   └── ScenarioComparison.tsx
 │   │   │   ├── chat/
-│   │   │   │   ├── ChatInterface.tsx
-│   │   │   │   ├── QuestionCard.tsx
-│   │   │   │   └── AnswerInput.tsx
-│   │   │   ├── visualization/
-│   │   │   │   ├── RadarChart.tsx
-│   │   │   │   ├── ConfidenceMeter.tsx
-│   │   │   │   └── ComparisonChart.tsx
 │   │   │   ├── advisor/
-│   │   │   │   ├── AdvisorCard.tsx
-│   │   │   │   └── PerspectivePanel.tsx
+│   │   │   ├── decision/
+│   │   │   ├── visualization/
 │   │   │   └── report/
-│   │   │       ├── ClarityReport.tsx
-│   │   │       └── UncertaintyMap.tsx
-│   │   ├── pages/
-│   │   │   ├── Landing.tsx
-│   │   │   ├── DecisionIntake.tsx
-│   │   │   ├── DiagnosticChat.tsx
-│   │   │   ├── TradeoffReview.tsx
-│   │   │   ├── ScenarioSimulation.tsx
-│   │   │   ├── PerspectiveView.tsx
-│   │   │   ├── UncertaintyView.tsx
-│   │   │   └── ClarityReportView.tsx
-│   │   ├── hooks/
-│   │   │   ├── useDecision.ts
-│   │   │   ├── useChat.ts
-│   │   │   ├── useScenarios.ts
-│   │   │   └── useReport.ts
-│   │   ├── context/
-│   │   │   ├── DecisionContext.tsx
-│   │   │   ├── UserContext.tsx
-│   │   │   └── UIContext.tsx
-│   │   ├── utils/
-│   │   │   ├── api.ts
-│   │   │   ├── constants.ts
-│   │   │   └── localStorage.ts
-│   │   ├── App.tsx
-│   │   ├── main.tsx
-│   │   └── index.css
-│   ├── public/
+│   │   ├── context/             # React Context
+│   │   ├── hooks/               # Custom hooks
+│   │   ├── utils/               # Utilities
+│   │   ├── pages/               # Page components
+│   │   └── App.tsx              # Main app
+│   ├── tests/                   # Test suite
 │   ├── package.json
-│   ├── tsconfig.json
-│   ├── vite.config.ts
-│   ├── tailwind.config.js
-│   └── README.md
-├── docs/
-│   ├── ARCHITECTURE.md
-│   ├── API_ENDPOINTS.md
-│   ├── AGENT_WORKFLOW.md
-│   ├── DATABASE_SCHEMA.md
-│   └── DEPLOYMENT.md
-├── .gitignore
-└── README.md
+│   └── .env.example
+├── DEPLOYMENT.md                # Deployment guide
+├── TESTING.md                   # Testing guide
+└── README.md                    # This file
 ```
 
-## User Flow
+## 🤝 Contributing
 
-1. **Landing** → Describe decision (e.g., "Master's degree, job, or startup?")
-2. **Diagnostic Chat** → AI asks 5 questions (values, constraints, timeline, finances, risk)
-3. **Tradeoff Review** → AI surfaces 3-5 hidden tradeoffs
-4. **Scenario Simulation** → AI generates 3 scenarios with detailed analysis
-5. **Perspective Panel** → 5 advisor archetypes provide viewpoints
-6. **Uncertainty Map** → Known vs unknown factors displayed
-7. **Clarity Report** → Exportable PDF with key insights
+Contributions welcome! Please:
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
-## Multi-Agent System (LangGraph)
+## ⚖️ License
 
-- **Facilitator Agent**: Guides conversation, builds user profile
-- **Tradeoff Discovery Agent**: Identifies blind spots and hidden tradeoffs
-- **Scenario Simulation Agent**: Models best/expected/worst cases
-- **Financial Analyst Agent**: Salary, cost of living, ROI analysis
-- **Perspective Panel Agent**: 5 distinct advisor personas
-- **Uncertainty Agent**: Maps confidence and missing info
-- **Report Agent**: Generates final clarity report
+MIT License - See LICENSE file for details
 
-## Responsible AI
+## 📞 Support
 
-✅ Never prescribes decisions ("You should choose X")
-✅ Always shows confidence levels and assumptions
-✅ Displays missing information gaps
-✅ Highlights uncertainty and biases
-✅ Emphasizes human agency in final decision
-✅ Shows alternative perspectives automatically
+- **Issues**: GitHub Issues
+- **Discussions**: GitHub Discussions
+- **Documentation**: See README and deployment guide
 
-## Deployment (MVP)
+## 🙏 Acknowledgments
 
-- **Development**: Localhost only
-- **Database**: Local MySQL
-- **Auth**: Mock sign-in with localStorage
-- **No external services**: This is offline-first MVP
+- Built with ❤️ for the USAII Global AI Hackathon 2026
+- Powered by Google Gemini API
+- Special thanks to the React and FastAPI communities
 
-## Team & Timeline
+---
 
-**Team Size**: 3 students
-**Duration**: 7 days
-**Target**: Production-quality MVP
-
-## Database Schema
-
-- `users` - Mock user accounts (localStorage)
-- `decisions` - Decision records with metadata
-- `decision_context` - Values, constraints, risk profiles
-- `scenarios` - Simulation results with scoring
-- `tradeoffs` - Hidden tradeoffs discovered
-- `sessions` - Chat conversation history
-- `advisor_perspectives` - Perspective panel outputs
-
-## 10-Phase Build Plan
-
-✅ Phase 1: Project structure
-→ Phase 2: Backend architecture
-→ Phase 3: Database models
-→ Phase 4: LangGraph agent architecture
-→ Phase 5: API endpoints
-→ Phase 6: Frontend architecture
-→ Phase 7: React components
-→ Phase 8: Prompt templates
-→ Phase 9: PDF generation
-→ Phase 10: Deployment instructions
-
-## License
-
-MIT
-
-## Contact
-
-Built for USAII Hackathon 2026
+**Remember**: DecisionLens AI is a decision aid, not a decision maker. You are responsible for your final choice. 🎯
