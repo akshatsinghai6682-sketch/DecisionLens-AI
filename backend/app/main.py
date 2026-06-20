@@ -1,11 +1,11 @@
-"""FastAPI application entry point"""
+"""Updated main.py with all routes"""
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from app.config import settings
 from app.utils.db import init_db
-from app.routes import health
+from app.routes import health, auth, decisions, chat, scenarios, reports
 import logging
 
 # Configure logging
@@ -59,6 +59,11 @@ async def shutdown_event():
 
 # Include routes
 app.include_router(health.router)
+app.include_router(auth.router)
+app.include_router(decisions.router)
+app.include_router(chat.router)
+app.include_router(scenarios.router)
+app.include_router(reports.router)
 
 # Root endpoint
 @app.get("/")
@@ -69,6 +74,14 @@ async def root():
         "version": settings.API_VERSION,
         "environment": settings.ENVIRONMENT,
         "docs": "/docs",
+        "features": [
+            "Diagnostic conversation",
+            "Scenario simulation",
+            "Tradeoff discovery",
+            "Perspective panel",
+            "Uncertainty mapping",
+            "PDF report generation"
+        ]
     }
 
 if __name__ == "__main__":
